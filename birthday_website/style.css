@@ -1,0 +1,206 @@
+/* Universal styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif; /* You can use Google Fonts if desired */
+}
+
+body {
+  background: linear-gradient(135deg, #ffe6f0, #d0f0ff); /* Gentle pink-blue gradient */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  text-align: center;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 50px; /* Space for content at the bottom */
+  display: flex; /* For centering content vertically */
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 90%; /* Responsive width */
+  max-width: 800px; /* Max width for larger screens */
+  background: rgba(255, 255, 255, 0.5); /* Semi-transparent background for content */
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  margin: 20px auto; /* Center the container with margin */
+}
+
+h1 {
+  color: #ff4da6; /* Vibrant pink */
+  font-size: 2.5em;
+  margin: 10px 0 15px;
+  animation: glow 2s infinite alternate; /* Pulsating glow effect */
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ff4da6, 0 0 20px #ff99cc; }
+  to { text-shadow: 0 0 20px #ff80bf, 0 0 40px #ff3385; }
+}
+
+/* Glassmorphism Effect for Wish */
+.wish {
+  font-size: 1.2em;
+  color: #444;
+  margin: 10px auto 25px;
+  padding: 15px 25px;
+  max-width: 90%; /* Wider on small screens */
+  
+  background: rgba(255, 255, 255, 0.3); /* Lighter background */
+  backdrop-filter: blur(8px); /* Stronger blur for glass effect */
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.image-container {
+  margin: 20px auto;
+  width: 280px; /* Slightly smaller for mobile */
+  height: 280px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(255, 77, 166, 0.6);
+  animation: float 4s ease-in-out infinite;
+  border: 5px solid #fff; /* White border around image */
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 1.5s ease-in-out; /* Smooth fade for slideshow */
+}
+
+/* Button Styling */
+.button-container {
+    margin-top: 20px;
+    display: flex; /* Arrange buttons side-by-side */
+    justify-content: center;
+    flex-wrap: wrap; /* Wrap buttons on small screens */
+}
+
+button {
+  background: linear-gradient(90deg, #ff66b3, #ffb3cc);
+  border: none;
+  border-radius: 25px;
+  padding: 10px 20px;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  margin: 10px; /* Space between buttons */
+  transition: transform 0.3s ease, background 0.3s ease;
+  min-width: 120px; /* Ensure buttons don't get too small */
+}
+
+button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(90deg, #ff4da6, #ff80bf);
+}
+
+/* Balloons */
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  width: 40px;
+  height: 50px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ff99cc 40%, #ff4da6 100%);
+  animation: rise 6s linear infinite;
+  opacity: 0.8;
+  z-index: -1; /* Send balloons behind content */
+}
+
+@keyframes rise {
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  100% { transform: translateY(-110vh) scale(1.1); opacity: 0; } /* Fade out as they rise */
+}
+
+/* Fireworks and Confetti (Canvas and CSS Keyframes) */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999; /* Ensure fireworks are on top */
+}
+
+/* Confetti styles (smooth animation) */
+@keyframes fall {
+  0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.confetti { /* This class will be added by JavaScript */
+  position: fixed;
+  top: -10px;
+  left: 0;
+  width: 8px;
+  height: 12px;
+  background: blue; /* Will be overridden by JS for random colors */
+  opacity: 0; /* Starts invisible */
+  transform-origin: center center;
+  animation: fall 3s linear forwards; /* Controlled by JS duration */
+  border-radius: 2px;
+  z-index: 998; /* Below fireworks, above content */
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2em; /* Smaller title on smaller screens */
+  }
+  .wish {
+    font-size: 1em; /* Smaller text */
+    padding: 12px 18px;
+    margin: 15px auto;
+  }
+  .image-container {
+    width: 250px;
+    height: 250px;
+    margin: 15px auto;
+  }
+  .button-container button {
+    font-size: 0.9em;
+    padding: 8px 15px;
+    margin: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8em;
+  }
+  .wish {
+    max-width: 95%; /* Even wider for tiny screens */
+  }
+  .image-container {
+    width: 200px;
+    height: 200px;
+  }
+  .button-container {
+    flex-direction: column; /* Stack buttons vertically on very small screens */
+    align-items: center;
+  }
+  .button-container button {
+    width: 80%; /* Make buttons take more width */
+    max-width: 200px;
+  }
+}
+
